@@ -150,7 +150,7 @@ export function ResultScreen() {
 
       <motion.div variants={item} className="flex justify-center mt-6">
         <p className="text-xs text-muted-foreground/60">
-          press <kbd className="px-1.5 py-0.5 rounded bg-card-elevated text-muted-foreground text-xs font-mono">Tab</kbd> + <kbd className="px-1.5 py-0.5 rounded bg-card-elevated text-muted-foreground text-xs font-mono">Enter</kbd> to restart
+          press <kbd className="px-1.5 py-0.5 rounded bg-card-elevated text-muted-foreground text-xs">Tab</kbd> + <kbd className="px-1.5 py-0.5 rounded bg-card-elevated text-muted-foreground text-xs">Enter</kbd> to restart
         </p>
       </motion.div>
     </motion.div>

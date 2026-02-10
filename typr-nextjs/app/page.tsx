@@ -68,8 +68,8 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      <footer className="py-4 font-mono text-center">
-        <p className="text-sm text-white">
+      <footer className="py-4 text-center">
+        <p className="text-sm text-primary">
           Made by Sameer Poswal
         </p>
       </footer>

@@ -1,9 +1,10 @@
 "use client"
 
 import { atom } from "jotai"
+import { atomWithStorage } from "jotai/utils"
 import { generateWords } from "@/lib/words"
 import { calculateWPM, calculateRawWPM, calculateAccuracy } from "@/lib/analytics"
-import type { Mode, SelectedOption, TestStatus, TimeOption, WordOption, WordState } from "@/types"
+import type { Mode, SelectedOption, TestStatus, TimeOption, WordOption, WordState, ThemeId, FontId } from "@/types"
 
 export const modeAtom = atom<Mode>("words")
 export const selectedWordOptionAtom = atom<WordOption>(25)
@@ -80,3 +81,8 @@ export const timeTakenAtom = atom<number>((get) => {
   if (!startTime || !endTime) return 0
   return Math.round((endTime - startTime) / 1000 * 10) / 10
 })
+
+// Settings atoms with localStorage persistence
+export const selectedThemeAtom = atomWithStorage<ThemeId>("typr-theme", "ocean")
+export const selectedFontAtom = atomWithStorage<FontId>("typr-font", "geist-mono")
+

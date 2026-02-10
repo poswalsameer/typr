@@ -41,7 +41,7 @@ export function ModeSelector() {
 
   return (
     <div
-      className={`flex items-center justify-center font-mono gap-0.5 rounded-xl bg-[hsl(var(--card-elevated))] px-4 py-2.5 select-none transition-opacity ${isDisabled ? "opacity-40 pointer-events-none" : ""
+      className={`flex items-center justify-center gap-0.5 rounded-xl bg-[hsl(var(--card-elevated))] px-4 py-2.5 select-none transition-opacity ${isDisabled ? "opacity-40 pointer-events-none" : ""
         }`}
       role="toolbar"
       aria-label="Test mode selector"

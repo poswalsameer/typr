@@ -18,3 +18,23 @@ export type WordState = {
   chars: CharState[]
   typed: string
 }
+
+export type ThemeId = "ocean" | "lavender" | "forest"
+
+export type FontId = "geist-mono" | "geist-sans" | "monaco"
+
+export type Theme = {
+  id: ThemeId
+  name: string
+  colors: {
+    primary: string
+    secondary: string
+    text: string
+  }
+}
+
+export type Font = {
+  id: FontId
+  name: string
+  family: string
+}

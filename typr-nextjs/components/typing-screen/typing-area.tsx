@@ -227,7 +227,7 @@ export function TypingArea() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-accent-active text-2xl font-mono font-bold mb-4 tabular-nums"
+          className="text-accent-active text-2xl font-bold mb-4 tabular-nums"
         >
           {timer}
         </motion.div>

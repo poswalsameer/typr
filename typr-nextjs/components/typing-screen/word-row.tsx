@@ -26,7 +26,7 @@ export const WordRow = React.memo(function WordRow({
 
   return (
     <span
-      className={`inline-block mr-[0.6em] text-[1.45rem] leading-loose font-mono tracking-wide ${!isActive && !isCompleted ? "text-muted-foreground/40" : ""
+      className={`inline-block mr-[0.6em] text-[1.45rem] leading-loose tracking-wide ${!isActive && !isCompleted ? "text-muted-foreground/40" : ""
         }`}
       data-word-index={wordIndex}
     >
