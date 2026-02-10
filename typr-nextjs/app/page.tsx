@@ -18,6 +18,9 @@ export default function Home() {
     (e: KeyboardEvent) => {
       if (e.key === "Tab") {
         e.preventDefault()
+        if (testStatus === "idle" || testStatus === "running") {
+          restart()
+        }
       }
       if (e.key === "Enter" && testStatus === "finished") {
         e.preventDefault()
@@ -36,7 +39,7 @@ export default function Home() {
     <main className="min-h-screen flex flex-col items-center">
       <Header />
 
-      <div className="flex-1 flex flex-col items-center justify-center w-full -mt-16">
+      <div className="flex-1 flex flex-col items-center justify-center w-full mb-16">
         <AnimatePresence mode="wait">
           {testStatus === "finished" ? (
             <motion.div
@@ -65,8 +68,8 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      <footer className="py-4 text-center">
-        <p className="text-xs text-muted-foreground/40">
+      <footer className="py-4 font-mono text-center">
+        <p className="text-sm text-white">
           Made by Sameer Poswal
         </p>
       </footer>

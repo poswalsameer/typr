@@ -1,81 +1,50 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
-import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { motion } from "framer-motion"
+import { useAtom, useAtomValue, useSetAtom } from "jotai"
+import { WordRow } from "@/components/typing-screen/word-row"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { SmoothCursor } from "@/components/typing-screen/smooth-cursor"
 import {
-  wordsAtom,
-  currentWordIndexAtom,
-  currentCharIndexAtom,
-  testStatusAtom,
-  timerAtom,
-  startTimeAtom,
-  endTimeAtom,
   modeAtom,
-  selectedTimeOptionAtom,
+  timerAtom,
+  wordsAtom,
+  endTimeAtom,
+  startTimeAtom,
+  testStatusAtom,
   correctCharsAtom,
   incorrectCharsAtom,
   totalTypedCharsAtom,
+  currentWordIndexAtom,
+  currentCharIndexAtom,
+  selectedTimeOptionAtom,
 } from "@/store/atoms"
-import { WordRow } from "@/components/typing-screen/word-row"
-import { SmoothCursor } from "@/components/typing-screen/smooth-cursor"
 
 export function TypingArea() {
-  const words = useAtomValue(wordsAtom)
+  const [timer, setTimer] = useAtom(timerAtom)
+  const [testStatus, setTestStatus] = useAtom(testStatusAtom)
   const [currentWordIndex, setCurrentWordIndex] = useAtom(currentWordIndexAtom)
   const [currentCharIndex, setCurrentCharIndex] = useAtom(currentCharIndexAtom)
-  const [testStatus, setTestStatus] = useAtom(testStatusAtom)
-  const [timer, setTimer] = useAtom(timerAtom)
-  const setStartTime = useSetAtom(startTimeAtom)
-  const setEndTime = useSetAtom(endTimeAtom)
+
   const mode = useAtomValue(modeAtom)
+  const words = useAtomValue(wordsAtom)
   const timeOption = useAtomValue(selectedTimeOptionAtom)
+
+  const setEndTime = useSetAtom(endTimeAtom)
+  const setStartTime = useSetAtom(startTimeAtom)
   const setCorrectChars = useSetAtom(correctCharsAtom)
   const setIncorrectChars = useSetAtom(incorrectCharsAtom)
   const setTotalTypedChars = useSetAtom(totalTypedCharsAtom)
 
   const [typedWords, setTypedWords] = useState<string[]>([])
-  const [scrollOffset, setScrollOffset] = useState(0)
+  const [scrollOffset, setScrollOffset] = useState<number>(0)
+
   const containerRef = useRef<HTMLDivElement>(null)
   const wordsContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
   const lineHeight = 58
-
-  useEffect(() => {
-    setTypedWords(new Array(words.length).fill(""))
-    setScrollOffset(0)
-  }, [words])
-
-  useEffect(() => {
-    inputRef.current?.focus()
-  }, [words, testStatus])
-
-  useEffect(() => {
-    if (testStatus === "running" && mode === "time") {
-      timerRef.current = setInterval(() => {
-        setTimer((prev) => {
-          if (prev <= 1) {
-            clearInterval(timerRef.current!)
-            setTestStatus("finished")
-            setEndTime(Date.now())
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
-    }
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current)
-    }
-  }, [testStatus, mode, setTimer, setTestStatus, setEndTime])
-
-  useEffect(() => {
-    if (testStatus === "idle" && mode === "time") {
-      setTimer(timeOption)
-    }
-  }, [testStatus, mode, timeOption, setTimer])
 
   const calculateLineForWord = useCallback(
     (wordIndex: number) => {
@@ -206,13 +175,48 @@ export function TypingArea() {
     ]
   )
 
-  const handleContainerClick = () => {
+  function handleContainerClick() {
     inputRef.current?.focus()
   }
 
-  const handlePaste = (e: React.ClipboardEvent) => {
+  function handlePaste(e: React.ClipboardEvent) {
     e.preventDefault()
   }
+
+  useEffect(() => {
+    setTypedWords(new Array(words.length).fill(""))
+    setScrollOffset(0)
+  }, [words])
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [words, testStatus])
+
+  useEffect(() => {
+    if (testStatus === "running" && mode === "time") {
+      timerRef.current = setInterval(() => {
+        setTimer((prev) => {
+          if (prev <= 1) {
+            clearInterval(timerRef.current!)
+            setTestStatus("finished")
+            setEndTime(Date.now())
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+    }
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current)
+    }
+  }, [testStatus, mode, setTimer, setTestStatus, setEndTime])
+
+  useEffect(() => {
+    if (testStatus === "idle" && mode === "time") {
+      setTimer(timeOption)
+    }
+  }, [testStatus, mode, timeOption, setTimer])
 
   return (
     <div

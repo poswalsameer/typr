@@ -1,25 +1,9 @@
 "use client"
 
 import { atom } from "jotai"
-import { calculateWPM, calculateRawWPM, calculateAccuracy } from "@/lib/analytics"
 import { generateWords } from "@/lib/words"
-
-export type Mode = "words" | "time"
-export type WordOption = 25 | 50 | 100
-export type TimeOption = 15 | 30 | 60
-export type SelectedOption = WordOption | TimeOption
-export type TestStatus = "idle" | "running" | "finished"
-
-export interface CharState {
-  char: string
-  state: "correct" | "incorrect" | "extra" | "pending"
-}
-
-export interface WordState {
-  word: string
-  chars: CharState[]
-  typed: string
-}
+import { calculateWPM, calculateRawWPM, calculateAccuracy } from "@/lib/analytics"
+import type { Mode, SelectedOption, TestStatus, TimeOption, WordOption, WordState } from "@/types"
 
 export const modeAtom = atom<Mode>("words")
 export const selectedWordOptionAtom = atom<WordOption>(25)
