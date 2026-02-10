@@ -1,6 +1,6 @@
 "use client"
 
-import { useAtom, useSetAtom } from "jotai"
+import { useAtom, useAtomValue } from "jotai"
 import {
   modeAtom,
   selectedWordOptionAtom,
@@ -19,7 +19,8 @@ export function ModeSelector() {
   const [mode, setMode] = useAtom(modeAtom)
   const [selectedWordOption, setSelectedWordOption] = useAtom(selectedWordOptionAtom)
   const [selectedTimeOption, setSelectedTimeOption] = useAtom(selectedTimeOptionAtom)
-  const [testStatus] = useAtom(testStatusAtom)
+  const testStatus = useAtomValue(testStatusAtom)
+
   const restart = useRestart()
 
   const handleModeChange = (newMode: Mode) => {
@@ -50,8 +51,8 @@ export function ModeSelector() {
       <button
         onClick={() => handleModeChange("words")}
         className={`px-3 py-1 text-sm rounded-md transition-colors cursor-pointer ${mode === "words"
-            ? "text-accent-active"
-            : "text-muted-foreground hover:text-foreground"
+          ? "text-accent-active"
+          : "text-muted-foreground hover:text-foreground"
           }`}
         aria-pressed={mode === "words"}
       >
@@ -60,8 +61,8 @@ export function ModeSelector() {
       <button
         onClick={() => handleModeChange("time")}
         className={`px-3 py-1 text-sm rounded-md transition-colors cursor-pointer ${mode === "time"
-            ? "text-accent-active"
-            : "text-muted-foreground hover:text-foreground"
+          ? "text-accent-active"
+          : "text-muted-foreground hover:text-foreground"
           }`}
         aria-pressed={mode === "time"}
       >
@@ -76,8 +77,8 @@ export function ModeSelector() {
             key={option}
             onClick={() => handleWordOptionChange(option)}
             className={`px-3 py-1 text-sm rounded-md transition-colors cursor-pointer ${selectedWordOption === option
-                ? "text-accent-active"
-                : "text-muted-foreground hover:text-foreground"
+              ? "text-accent-active"
+              : "text-muted-foreground hover:text-foreground"
               }`}
             aria-pressed={selectedWordOption === option}
           >
@@ -89,8 +90,8 @@ export function ModeSelector() {
             key={option}
             onClick={() => handleTimeOptionChange(option)}
             className={`px-3 py-1 text-sm rounded-md transition-colors cursor-pointer ${selectedTimeOption === option
-                ? "text-accent-active"
-                : "text-muted-foreground hover:text-foreground"
+              ? "text-accent-active"
+              : "text-muted-foreground hover:text-foreground"
               }`}
             aria-pressed={selectedTimeOption === option}
           >

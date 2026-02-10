@@ -17,7 +17,7 @@ import {
   incorrectCharsAtom,
   totalTypedCharsAtom,
 } from "@/store/atoms"
-import { WordRow } from "@/components/word-row"
+import { WordRow } from "@/components/typing-screen/word-row"
 
 export function TypingArea() {
   const words = useAtomValue(wordsAtom)

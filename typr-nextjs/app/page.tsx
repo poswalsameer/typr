@@ -2,13 +2,13 @@
 
 import { useAtomValue } from "jotai"
 import { useEffect, useCallback } from "react"
-import { AnimatePresence, motion } from "framer-motion"
 import { testStatusAtom } from "@/store/atoms"
-import { Header } from "@/components/header"
-import { ModeSelector } from "@/components/mode-selector"
-import { TypingArea } from "@/components/typing-area"
-import { ResultScreen } from "@/components/result-screen"
 import { useRestart } from "@/hooks/use-restart"
+import { AnimatePresence, motion } from "framer-motion"
+import { ResultScreen } from "@/components/result-screen"
+import { Header } from "@/components/typing-screen/header"
+import { TypingArea } from "@/components/typing-screen/typing-area"
+import { ModeSelector } from "@/components/typing-screen/mode-selector"
 
 export default function Home() {
   const testStatus = useAtomValue(testStatusAtom)
@@ -67,7 +67,7 @@ export default function Home() {
 
       <footer className="py-4 text-center">
         <p className="text-xs text-muted-foreground/40">
-          built with precision
+          Made by Sameer Poswal
         </p>
       </footer>
     </main>
