@@ -18,6 +18,7 @@ import {
   totalTypedCharsAtom,
 } from "@/store/atoms"
 import { WordRow } from "@/components/typing-screen/word-row"
+import { SmoothCursor } from "@/components/typing-screen/smooth-cursor"
 
 export function TypingArea() {
   const words = useAtomValue(wordsAtom)
@@ -253,6 +254,12 @@ export function TypingArea() {
               isActive={index === currentWordIndex}
             />
           ))}
+
+          <SmoothCursor
+            currentWordIndex={currentWordIndex}
+            currentCharIndex={currentCharIndex}
+            containerRef={wordsContainerRef}
+          />
         </motion.div>
 
         <div

@@ -45,14 +45,13 @@ export const WordRow = React.memo(function WordRow({
           }
         }
 
-        const showCaret =
-          isCurrent && charIndex === currentCharIndex
-
         return (
-          <span key={charIndex} className="relative">
-            {showCaret && (
-              <span className="absolute -left-px top-[0.15em] w-[2px] h-[1.2em] bg-accent-active animate-caret" />
-            )}
+          <span
+            key={charIndex}
+            className="relative"
+            data-word={wordIndex}
+            data-char={charIndex}
+          >
             <span className={`transition-colors duration-75 ${colorClass}`}>
               {char}
             </span>
@@ -62,14 +61,22 @@ export const WordRow = React.memo(function WordRow({
 
       {isCurrent &&
         typed.slice(chars.length).map((extraChar, i) => (
-          <span key={`extra-${i}`} className="relative">
+          <span
+            key={`extra-${i}`}
+            className="relative"
+            data-word={wordIndex}
+            data-char={chars.length + i}
+          >
             <span className="text-destructive/60">{extraChar}</span>
           </span>
         ))}
 
       {isCurrent && currentCharIndex >= chars.length && currentCharIndex === typed.length && (
-        <span className="relative">
-          <span className="absolute -left-px top-[0.15em] w-[2px] h-[1.2em] bg-accent-active animate-caret" />
+        <span
+          className="relative inline-block w-0"
+          data-word={wordIndex}
+          data-char={currentCharIndex}
+        >
         </span>
       )}
 
