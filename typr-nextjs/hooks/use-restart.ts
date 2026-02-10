@@ -1,27 +1,25 @@
 "use client"
 
-import { useSetAtom, useAtomValue } from "jotai"
 import { useCallback } from "react"
+import { generateWords } from "@/lib/words"
+import { useSetAtom, useAtomValue } from "jotai"
+import type { Mode, TimeOption, WordOption } from "@/types"
 import {
   modeAtom,
-  selectedWordOptionAtom,
-  selectedTimeOptionAtom,
   wordsAtom,
-  currentWordIndexAtom,
-  currentCharIndexAtom,
-  typedHistoryAtom,
-  testStatusAtom,
   timerAtom,
-  startTimeAtom,
   endTimeAtom,
+  startTimeAtom,
+  testStatusAtom,
+  typedHistoryAtom,
   correctCharsAtom,
   incorrectCharsAtom,
   totalTypedCharsAtom,
-  type Mode,
-  type WordOption,
-  type TimeOption,
+  currentWordIndexAtom,
+  currentCharIndexAtom,
+  selectedWordOptionAtom,
+  selectedTimeOptionAtom,
 } from "@/store/atoms"
-import { generateWords } from "@/lib/words"
 
 export function useRestart() {
   const setMode = useSetAtom(modeAtom)

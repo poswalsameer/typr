@@ -1,12 +1,12 @@
 "use client"
 
 import { useAtomValue } from "jotai"
+import { Header } from "@/components/header"
 import { useEffect, useCallback } from "react"
 import { testStatusAtom } from "@/store/atoms"
 import { useRestart } from "@/hooks/use-restart"
 import { AnimatePresence, motion } from "framer-motion"
 import { ResultScreen } from "@/components/result-screen"
-import { Header } from "@/components/typing-screen/header"
 import { TypingArea } from "@/components/typing-screen/typing-area"
 import { TestControls } from "@/components/typing-screen/test-controls"
 

@@ -1,4 +1,4 @@
-import { SettingsDropdown } from "@/components/settings-dropdown"
+import { SettingsDropdown } from "@/components/header/settings-dropdown"
 
 export function Header() {
   return (
