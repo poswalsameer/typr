@@ -5,27 +5,27 @@ export const THEMES: Theme[] = [
     id: "ocean",
     name: "Ocean",
     colors: {
-      primary: "#007ACC",
-      secondary: "#4D4D4D",
-      text: "#D4D4D4",
+      primary: "#007ACC",      // Bright blue - accent/primary
+      secondary: "#1E1E1E",    // Dark background
+      text: "#D4D4D4",         // Light gray - text
     },
   },
   {
     id: "lavender",
     name: "Lavender",
     colors: {
-      primary: "#CBA6F7",
-      secondary: "#7F849C",
-      text: "#CDD6F4",
+      primary: "#CBA6F7",      // Lavender - accent/primary
+      secondary: "#1E1E2E",    // Dark purple background
+      text: "#CDD6F4",         // Light purple - text
     },
   },
   {
     id: "forest",
     name: "Forest",
     colors: {
-      primary: "#66AC92",
-      secondary: "#015C53",
-      text: "#DCEAE5",
+      primary: "#66AC92",      // Teal - accent/primary
+      secondary: "#0B1E1A",    // Dark teal background
+      text: "#DCEAE5",         // Light mint - text
     },
   },
 ]
