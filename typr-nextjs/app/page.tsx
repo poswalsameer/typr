@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { ResultScreen } from "@/components/result-screen"
 import { Header } from "@/components/typing-screen/header"
 import { TypingArea } from "@/components/typing-screen/typing-area"
-import { ModeSelector } from "@/components/typing-screen/mode-selector"
+import { TestControls } from "@/components/typing-screen/test-controls"
 
 export default function Home() {
   const testStatus = useAtomValue(testStatusAtom)
@@ -61,7 +61,7 @@ export default function Home() {
               transition={{ duration: 0.2 }}
               className="w-full flex flex-col items-center gap-8"
             >
-              <ModeSelector />
+              <TestControls />
               <TypingArea />
             </motion.div>
           )}
@@ -70,7 +70,15 @@ export default function Home() {
 
       <footer className="py-4 text-center">
         <p className="text-sm text-primary">
-          Made by Sameer Poswal
+          Made by{" "}
+          <a
+            href="https://sameerposwal.xyz"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2"
+          >
+            Sameer Poswal
+          </a>
         </p>
       </footer>
     </main>

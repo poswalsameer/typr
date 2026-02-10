@@ -21,7 +21,6 @@ import {
 } from "@/store/atoms"
 
 export function TypingArea() {
-  const [timer, setTimer] = useAtom(timerAtom)
   const [testStatus, setTestStatus] = useAtom(testStatusAtom)
   const [currentWordIndex, setCurrentWordIndex] = useAtom(currentWordIndexAtom)
   const [currentCharIndex, setCurrentCharIndex] = useAtom(currentCharIndexAtom)
@@ -30,6 +29,7 @@ export function TypingArea() {
   const words = useAtomValue(wordsAtom)
   const timeOption = useAtomValue(selectedTimeOptionAtom)
 
+  const setTimer = useSetAtom(timerAtom)
   const setEndTime = useSetAtom(endTimeAtom)
   const setStartTime = useSetAtom(startTimeAtom)
   const setCorrectChars = useSetAtom(correctCharsAtom)
@@ -223,16 +223,6 @@ export function TypingArea() {
       className="w-full max-w-4xl mx-auto px-4 relative select-none"
       onClick={handleContainerClick}
     >
-      {mode === "time" && testStatus !== "idle" && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-accent-active text-2xl font-bold mb-4 tabular-nums"
-        >
-          {timer}
-        </motion.div>
-      )}
-
       <div
         ref={containerRef}
         className="relative overflow-hidden cursor-text"
