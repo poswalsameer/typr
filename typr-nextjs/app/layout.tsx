@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "typr — Minimal Typing Test",
+  title: "typr — no noise, only keystrokes",
   description:
-    "A high-performance, minimal typing test inspired by Monkeytype. Test your typing speed and accuracy with words or timed modes.",
+    "A high-performance, minimal typing test website. Test your typing speed and accuracy with words or timed modes.",
   keywords: ["typing test", "wpm", "typing speed", "monkeytype"],
 }
 

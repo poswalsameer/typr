@@ -2,7 +2,7 @@
 
 import { useEffect } from "react"
 import { useAtomValue } from "jotai"
-import { selectedThemeAtom, selectedFontAtom } from "@/store/atoms"
+import { selectedThemeAtom, selectedFontAtom } from "@/store"
 import { THEMES, FONTS } from "@/lib/constants"
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {

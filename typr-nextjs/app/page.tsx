@@ -3,7 +3,7 @@
 import { useAtomValue } from "jotai"
 import { Header } from "@/components/header"
 import { useEffect, useCallback } from "react"
-import { testStatusAtom } from "@/store/atoms"
+import { testStatusAtom } from "@/store"
 import { useRestart } from "@/hooks/use-restart"
 import { AnimatePresence, motion } from "framer-motion"
 import { ResultScreen } from "@/components/result-screen"

@@ -3,7 +3,7 @@
 import { useAtomValue } from "jotai"
 import { motion } from "framer-motion"
 import { ModeSelector } from "@/components/typing-screen/mode-selector"
-import { testStatusAtom, timerAtom, modeAtom } from "@/store/atoms"
+import { testStatusAtom, timerAtom, modeAtom } from "@/store"
 
 export function TestControls() {
   const testStatus = useAtomValue(testStatusAtom)

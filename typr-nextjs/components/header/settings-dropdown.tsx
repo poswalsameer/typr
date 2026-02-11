@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useAtom } from "jotai"
 import { Settings } from "lucide-react"
-import { selectedThemeAtom, selectedFontAtom } from "@/store/atoms"
+import { selectedThemeAtom, selectedFontAtom } from "@/store"
 import { THEMES, FONTS } from "@/lib/constants"
 import type { ThemeId, FontId } from "@/types"
 
@@ -46,8 +46,8 @@ export function SettingsDropdown() {
               <button
                 onClick={() => setActiveTab("themes")}
                 className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "themes"
-                    ? "text-primary bg-card"
-                    : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary bg-card"
+                  : "text-muted-foreground hover:text-foreground"
                   }`}
               >
                 Themes
@@ -55,8 +55,8 @@ export function SettingsDropdown() {
               <button
                 onClick={() => setActiveTab("fonts")}
                 className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${activeTab === "fonts"
-                    ? "text-primary bg-card"
-                    : "text-muted-foreground hover:text-foreground"
+                  ? "text-primary bg-card"
+                  : "text-muted-foreground hover:text-foreground"
                   }`}
               >
                 Fonts
@@ -72,8 +72,8 @@ export function SettingsDropdown() {
                       key={theme.id}
                       onClick={() => handleThemeChange(theme.id)}
                       className={`w-full p-3 rounded-lg border-2 transition-all hover:scale-[1.02] ${selectedTheme === theme.id
-                          ? "border-primary bg-card"
-                          : "border-border hover:border-muted-foreground"
+                        ? "border-primary bg-card"
+                        : "border-border hover:border-muted-foreground"
                         }`}
                     >
                       <div className="flex items-center justify-between mb-2">
@@ -110,8 +110,8 @@ export function SettingsDropdown() {
                       key={font.id}
                       onClick={() => handleFontChange(font.id)}
                       className={`w-full p-3 rounded-lg border-2 transition-all hover:scale-[1.02] ${selectedFont === font.id
-                          ? "border-primary bg-card"
-                          : "border-border hover:border-muted-foreground"
+                        ? "border-primary bg-card"
+                        : "border-border hover:border-muted-foreground"
                         }`}
                       style={{ fontFamily: font.family }}
                     >

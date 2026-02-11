@@ -6,9 +6,10 @@ import { generateWords } from "@/lib/words"
 import { calculateWPM, calculateRawWPM, calculateAccuracy } from "@/lib/analytics"
 import type { Mode, SelectedOption, TestStatus, TimeOption, WordOption, WordState, ThemeId, FontId } from "@/types"
 
-export const modeAtom = atom<Mode>("words")
-export const selectedWordOptionAtom = atom<WordOption>(25)
-export const selectedTimeOptionAtom = atom<TimeOption>(15)
+// Test preferences with localStorage persistence
+export const modeAtom = atomWithStorage<Mode>("typr-mode", "words")
+export const selectedWordOptionAtom = atomWithStorage<WordOption>("typr-word-option", 25)
+export const selectedTimeOptionAtom = atomWithStorage<TimeOption>("typr-time-option", 15)
 
 export const selectedOptionAtom = atom<SelectedOption>(
   (get) => {

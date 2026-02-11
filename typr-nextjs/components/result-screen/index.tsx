@@ -10,7 +10,7 @@ import {
   incorrectCharsAtom,
   totalTypedCharsAtom,
   timeTakenAtom,
-} from "@/store/atoms"
+} from "@/store"
 
 export function ResultScreen() {
   const wpm = useAtomValue(wpmAtom)

@@ -8,7 +8,7 @@ import {
   testStatusAtom,
   selectedWordOptionAtom,
   selectedTimeOptionAtom,
-} from "@/store/atoms"
+} from "@/store"
 
 export function ModeSelector() {
   const [mode, setMode] = useAtom(modeAtom)

@@ -19,7 +19,7 @@ import {
   currentCharIndexAtom,
   selectedWordOptionAtom,
   selectedTimeOptionAtom,
-} from "@/store/atoms"
+} from "@/store"
 
 export function useRestart() {
   const setMode = useSetAtom(modeAtom)

@@ -18,7 +18,7 @@ import {
   currentWordIndexAtom,
   currentCharIndexAtom,
   selectedTimeOptionAtom,
-} from "@/store/atoms"
+} from "@/store"
 
 export function TypingArea() {
   const [testStatus, setTestStatus] = useAtom(testStatusAtom)
@@ -61,7 +61,8 @@ export function TypingArea() {
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (testStatus === "finished") return
 
-      if (e.ctrlKey || e.altKey || e.metaKey) return
+      // Allow Ctrl+Backspace for deleting entire word
+      if ((e.ctrlKey || e.altKey || e.metaKey) && e.key !== "Backspace") return
 
       const key = e.key
 
@@ -128,14 +129,29 @@ export function TypingArea() {
       }
 
       if (key === "Backspace") {
-        if (currentCharIndex > 0) {
-          setCurrentCharIndex((prev) => prev - 1)
-          setTypedWords((prev) => {
-            const updated = [...prev]
-            updated[currentWordIndex] = updated[currentWordIndex].slice(0, -1)
-            return updated
-          })
-          setTotalTypedChars((prev) => Math.max(0, prev - 1))
+        // Ctrl+Backspace: Delete entire word
+        if (e.ctrlKey || e.metaKey) {
+          const typedLength = currentCharIndex
+          if (typedLength > 0) {
+            setCurrentCharIndex(0)
+            setTypedWords((prev) => {
+              const updated = [...prev]
+              updated[currentWordIndex] = ""
+              return updated
+            })
+            setTotalTypedChars((prev) => Math.max(0, prev - typedLength))
+          }
+        } else {
+          // Regular backspace: Delete one character
+          if (currentCharIndex > 0) {
+            setCurrentCharIndex((prev) => prev - 1)
+            setTypedWords((prev) => {
+              const updated = [...prev]
+              updated[currentWordIndex] = updated[currentWordIndex].slice(0, -1)
+              return updated
+            })
+            setTotalTypedChars((prev) => Math.max(0, prev - 1))
+          }
         }
         return
       }
