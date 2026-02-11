@@ -5,6 +5,7 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { WordRow } from "@/components/typing-screen/word-row"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { SmoothCursor } from "@/components/typing-screen/smooth-cursor"
+import { generateWords } from "@/lib/words"
 import {
   modeAtom,
   timerAtom,
@@ -24,9 +25,9 @@ export function TypingArea() {
   const [testStatus, setTestStatus] = useAtom(testStatusAtom)
   const [currentWordIndex, setCurrentWordIndex] = useAtom(currentWordIndexAtom)
   const [currentCharIndex, setCurrentCharIndex] = useAtom(currentCharIndexAtom)
+  const [words, setWords] = useAtom(wordsAtom)
 
   const mode = useAtomValue(modeAtom)
-  const words = useAtomValue(wordsAtom)
   const timeOption = useAtomValue(selectedTimeOptionAtom)
 
   const setTimer = useSetAtom(timerAtom)
@@ -115,6 +116,12 @@ export function TypingArea() {
           return
         }
 
+        // In time mode, generate more words if approaching the end
+        if (mode === "time" && nextIndex >= words.length - 10) {
+          const newWords = generateWords(50)
+          setWords((prev) => [...prev, ...newWords])
+        }
+
         setCurrentWordIndex(nextIndex)
         setCurrentCharIndex(0)
 
@@ -186,6 +193,8 @@ export function TypingArea() {
       setIncorrectChars,
       setTotalTypedChars,
       setEndTime,
+      setWords,
+      setTypedWords,
       calculateLineForWord,
       lineHeight,
     ]
@@ -200,8 +209,24 @@ export function TypingArea() {
   }
 
   useEffect(() => {
-    setTypedWords(new Array(words.length).fill(""))
-    setScrollOffset(0)
+    // Only reset typed words if the array got smaller (test restart)
+    // Don't reset when words are appended (dynamic generation in time mode)
+    setTypedWords((prev) => {
+      if (prev.length > words.length) {
+        // Test was restarted
+        return new Array(words.length).fill("")
+      } else if (prev.length < words.length) {
+        // Words were appended, extend the typed words array
+        const newSlots = words.length - prev.length
+        return [...prev, ...new Array(newSlots).fill("")]
+      }
+      return prev
+    })
+
+    // Reset scroll only on test restart
+    if (words.length <= 100) {
+      setScrollOffset(0)
+    }
   }, [words])
 
   useEffect(() => {
